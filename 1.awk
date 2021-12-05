@@ -1,11 +1,20 @@
-BEGIN { a=0; b=0; i=1;j=2 }
+#Part 1
+#BEGIN {tmp=0; count=0} 
+#
+#{ if (NR>1 && $1>tmp) then count++; tmp=$1 }
+#
+#END { print count }
 
-{ if (i%4!=0) a+=$1; else a=0  }
 
-{ if (j>2 && (j+1%4!=0) ) b+=$1; else b=0  }
+#Part 2
+BEGIN {tmp=0; tmp2=0; tmp3=0; count=0} 
+{
+	if (NR>3 && ($1+tmp2+tmp) > (tmp3+tmp2+tmp)) {
+	       	count++;
+	}
+	tmp3=tmp2
+	tmp2=tmp
+	tmp=$1
+}
 
-{ print i, $1, a, b }
-
-{ i++; j++ }
-
-END { print i }
+END { print count }
